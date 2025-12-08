@@ -2386,7 +2386,9 @@
               <p>
                 <i class="fas fa-phone-alt"></i> 055 552 4747 / 050 864 4591
               </p>
-              <p><i class="fas fa-envelope"></i> info@synchousesolutions.com</p>
+              <p>
+                <i class="fas fa-envelope"></i> Synchouseproduction@gmail.com
+              </p>
               <p><i class="fas fa-map-marker-alt"></i> Accra, Ghana</p>
             </div>
 
@@ -2604,69 +2606,83 @@
         }
       });
 
-      // Modal Form submission with enhanced UX
-      bookingFormModal.addEventListener("submit", (e) => {
+      // Modal Form submission - send via email (mailto:)
+      bookingFormModal.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Get form values
+        // 1. Get ALL form values
         const contactPerson =
           document.getElementById("contactPersonModal").value;
+        const companyName =
+          document.getElementById("companyNameModal").value || "";
         const email = document.getElementById("emailModal").value;
         const phone = document.getElementById("phoneModal").value;
         const eventType = document.getElementById("eventTypeModal").value;
-        const eventDate = document.getElementById("eventDateModal").value;
         const serviceType = document.getElementById("serviceTypeModal").value;
+        const eventDate = document.getElementById("eventDateModal").value;
+        const eventTime = document.getElementById("eventTimeModal").value || "";
+        const location = document.getElementById("locationModal").value;
+        const otherEventType =
+          document.getElementById("otherEventTypeModal").value || "";
+        const message = document.getElementById("messageModal").value || "";
 
-        // Simple validation
+        // 2. Basic validation for required fields
         if (
           !contactPerson ||
           !email ||
           !phone ||
           !eventType ||
+          !serviceType ||
           !eventDate ||
-          !serviceType
+          !eventTime ||
+          !location
         ) {
           alert("Please fill in all required fields marked with *");
           return;
         }
 
-        // Show loading state
-        const submitBtn = bookingFormModal.querySelector(".submit-btn");
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML =
-          '<i class="fas fa-spinner fa-spin"></i> Processing...';
-        submitBtn.disabled = true;
+        // 3. Handle "Other" event type nicely
+        const finalEventType =
+          eventType === "Other" && otherEventType
+            ? `Other - ${otherEventType}`
+            : eventType;
 
-        // Simulate API call
-        setTimeout(() => {
-          // Show success message
-          bookingFormModal.style.display = "none";
-          successMessage.style.display = "block";
+        // 4. Build the email subject and body
+        const subject = encodeURIComponent(
+          `New LED Screen Booking Request - ${contactPerson}`
+        );
 
-          // Animate success message
-          successMessage.style.opacity = "0";
-          successMessage.style.transform = "scale(0.9)";
-          setTimeout(() => {
-            successMessage.style.transition =
-              "opacity 0.5s ease, transform 0.5s ease";
-            successMessage.style.opacity = "1";
-            successMessage.style.transform = "scale(1)";
-          }, 10);
+        const emailBody = `
+New LED screen booking request
 
-          // In a real application, you would send this data to a server
-          console.log("Booking submitted:", {
-            contactPerson,
-            email,
-            phone,
-            eventType,
-            eventDate,
-            serviceType,
-          });
+Name: ${contactPerson}
+Company / Organisation: ${companyName || "N/A"}
+Email: ${email}
+Phone: ${phone}
 
-          // Reset button
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-        }, 1500);
+Event Type: ${finalEventType}
+Service Needed: ${serviceType}
+Event Date: ${eventDate}
+Event Time: ${eventTime || "Not specified"}
+Event Location: ${location}
+
+Additional Details:
+${message || "None provided"}
+        `;
+
+        const encodedBody = encodeURIComponent(emailBody);
+
+        // 5. Your company inbox
+        const toEmail = "Synchouseproduction@gmail.com";
+
+        // 6. Open user's email client with pre-filled email
+        const mailtoLink = `mailto:${toEmail}?subject=${subject}&body=${encodedBody}`;
+        window.location.href = mailtoLink;
+
+        // 7. Reset form and close modal for clean UX
+        bookingFormModal.reset();
+        bookingModal.classList.remove("active");
+        document.body.style.overflow = "";
       });
 
       // Header scroll effect

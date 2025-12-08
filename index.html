@@ -172,6 +172,11 @@
         font-size: 1.5rem;
         cursor: pointer;
         z-index: 1001;
+        transition: var(--transition);
+      }
+
+      .mobile-menu-btn:hover {
+        color: var(--red);
       }
 
       /* Modern Modal Styles */
@@ -2427,12 +2432,6 @@
             SYNC<span>HOUSE</span>
           </a>
           <p>LED Screen Solutions for Unforgettable Events</p>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
         </div>
 
         <div class="copyright">
@@ -2445,39 +2444,59 @@
     </footer>
 
     <script>
-      // Mobile Navigation Toggle
+      // Mobile Navigation Toggle - FIXED VERSION
       const mobileMenuBtn = document.getElementById("mobileMenuBtn");
       const mainNav = document.getElementById("mainNav");
       const navLinks = document.querySelectorAll("#mainNav a");
 
-      mobileMenuBtn.addEventListener("click", () => {
-        mainNav.classList.toggle("active");
-        mobileMenuBtn.innerHTML = mainNav.classList.contains("active")
-          ? '<i class="fas fa-times"></i>'
-          : '<i class="fas fa-bars"></i>';
+      // Function to toggle mobile menu
+      function toggleMobileMenu() {
+        const isActive = mainNav.classList.contains("active");
 
-        // Prevent body scroll when menu is open
-        document.body.style.overflow = mainNav.classList.contains("active")
-          ? "hidden"
-          : "";
+        if (isActive) {
+          mainNav.classList.remove("active");
+          mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+          document.body.style.overflow = "";
+        } else {
+          mainNav.classList.add("active");
+          mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+          document.body.style.overflow = "hidden";
+        }
+      }
+
+      // Event listener for mobile menu button
+      mobileMenuBtn.addEventListener("click", function (e) {
+        e.stopPropagation(); // Prevent event bubbling
+        toggleMobileMenu();
       });
 
       // Close mobile menu when clicking a link
       navLinks.forEach((link) => {
         link.addEventListener("click", () => {
-          mainNav.classList.remove("active");
-          mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-          document.body.style.overflow = "";
+          if (mainNav.classList.contains("active")) {
+            mainNav.classList.remove("active");
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            document.body.style.overflow = "";
+          }
         });
       });
 
       // Close menu when clicking outside
       document.addEventListener("click", (e) => {
         if (
+          mainNav.classList.contains("active") &&
           !mainNav.contains(e.target) &&
-          !mobileMenuBtn.contains(e.target) &&
-          mainNav.classList.contains("active")
+          !mobileMenuBtn.contains(e.target)
         ) {
+          mainNav.classList.remove("active");
+          mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Close menu with Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mainNav.classList.contains("active")) {
           mainNav.classList.remove("active");
           mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
           document.body.style.overflow = "";

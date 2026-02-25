@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -210,7 +210,8 @@
         overflow-y: auto;
         position: relative;
         animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 25px 50px -12px rgba(254, 0, 0, 0.15),
+        box-shadow:
+          0 25px 50px -12px rgba(254, 0, 0, 0.15),
           0 0 0 1px rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(254, 0, 0, 0.1);
         transform: translateY(0);
@@ -415,27 +416,6 @@
         left: 100%;
       }
 
-      /* FORM NOTE */
-      .form-note {
-        text-align: center;
-        margin-top: 25px;
-        color: #777;
-        font-size: 0.9rem;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .form-note a {
-        color: var(--red);
-        text-decoration: none;
-        transition: var(--transition);
-      }
-
-      .form-note a:hover {
-        color: #ff3333;
-        text-decoration: underline;
-      }
-
       /* MODAL SUCCESS STATE */
       .modal-success {
         text-align: center;
@@ -528,67 +508,6 @@
         height: 100%;
         object-fit: cover;
         opacity: 0.7;
-      }
-
-      /* Video fallback */
-      .video-fallback {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          45deg,
-          var(--dark-gray) 30%,
-          var(--black) 70%
-        );
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        z-index: -1;
-      }
-
-      .video-fallback i {
-        font-size: 8rem;
-        color: var(--red);
-        opacity: 0.5;
-        margin-bottom: 20px;
-      }
-
-      .video-fallback p {
-        color: #aaa;
-        font-size: 1.2rem;
-        max-width: 500px;
-        text-align: center;
-        padding: 0 20px;
-      }
-
-      .video-controls {
-        position: absolute;
-        bottom: 30px;
-        right: 30px;
-        z-index: 2;
-      }
-
-      .video-control-btn {
-        background-color: rgba(19, 19, 19, 0.8);
-        border: none;
-        color: var(--white);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 1.2rem;
-        transition: var(--transition);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .video-control-btn:hover {
-        background-color: var(--red);
-        transform: scale(1.1);
       }
 
       .hero-overlay {
@@ -781,7 +700,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background-color: #25d366; /* WhatsApp green */
+        background-color: #25d366;
         color: white;
         padding: 18px 30px;
         border-radius: 50px;
@@ -806,20 +725,6 @@
         margin-right: 12px;
       }
 
-      .whatsapp-note {
-        color: #aaa;
-        font-size: 0.9rem;
-        margin-top: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-      }
-
-      .whatsapp-note i {
-        color: #25d366;
-      }
-
       .whatsapp-alternative {
         margin-top: 25px;
         padding-top: 20px;
@@ -833,14 +738,6 @@
 
       .whatsapp-alternative strong {
         color: var(--red);
-      }
-
-      /* Update contact-content grid for WhatsApp section */
-      .contact-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 50px;
-        align-items: start;
       }
 
       /* Clients Section */
@@ -895,22 +792,37 @@
         gap: 20px;
       }
 
+      /* UPDATED: allow caption below image */
       .gallery-item {
-        position: relative;
-        overflow: hidden;
         border-radius: 12px;
-        height: 250px;
+        background: var(--dark-gray);
         cursor: pointer;
+        transition: var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.06);
       }
 
-      .gallery-item img {
+      .gallery-item:hover {
+        transform: translateY(-4px);
+        border-color: rgba(254, 0, 0, 0.25);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+      }
+
+      .gallery-media {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px 12px 0 0;
+        height: 250px;
+      }
+
+      .gallery-media img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: var(--transition);
+        display: block;
       }
 
-      .gallery-item:hover img {
+      .gallery-item:hover .gallery-media img {
         transform: scale(1.1);
       }
 
@@ -935,6 +847,155 @@
       .gallery-overlay i {
         font-size: 2.5rem;
         color: var(--white);
+      }
+
+      /* NEW: Caption under every image */
+      .gallery-caption {
+        padding: 12px 12px 14px;
+        background-color: #0f0f0f;
+        color: #ccc;
+        font-size: 0.95rem;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 0 0 12px 12px;
+      }
+
+      .gallery-caption strong {
+        color: var(--red);
+        display: block;
+        margin-bottom: 5px;
+        font-size: 1rem;
+        letter-spacing: 0.2px;
+      }
+
+      /* ===== Gallery Lightbox (Pop-out) ===== */
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2500;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(10px);
+        padding: 18px;
+      }
+
+      .lightbox.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lightbox-card {
+        width: 100%;
+        max-width: 980px;
+        background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+        position: relative;
+        animation: slideUp 0.35s ease-out;
+      }
+
+      .lightbox-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(
+          to right,
+          rgba(254, 0, 0, 0.08),
+          transparent
+        );
+      }
+
+      .lightbox-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding-right: 10px;
+      }
+
+      .lightbox-title {
+        font-weight: 800;
+        font-size: 1.05rem;
+      }
+
+      .lightbox-desc {
+        color: #bdbdbd;
+        font-size: 0.95rem;
+        line-height: 1.35;
+      }
+
+      .lightbox-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .lightbox-btn {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--white);
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .lightbox-btn:hover {
+        background: rgba(254, 0, 0, 0.25);
+        border-color: rgba(254, 0, 0, 0.35);
+        transform: translateY(-2px);
+      }
+
+      .lightbox-body {
+        position: relative;
+        background: #050505;
+      }
+
+      .lightbox-img {
+        width: 100%;
+        height: auto;
+        max-height: 75vh;
+        object-fit: contain;
+        display: block;
+      }
+
+      .lightbox-nav {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        pointer-events: none;
+        padding: 0 8px;
+      }
+
+      .lightbox-nav .nav-btn {
+        pointer-events: auto;
+        background: rgba(0, 0, 0, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: var(--white);
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lightbox-nav .nav-btn:hover {
+        background: rgba(254, 0, 0, 0.35);
+        transform: scale(1.05);
       }
 
       /* Contact Section */
@@ -981,29 +1042,6 @@
         margin-bottom: 30px;
       }
 
-      .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: 30px 0;
-      }
-
-      .social-links a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 50px;
-        height: 50px;
-        background-color: var(--dark-gray);
-        border-radius: 50%;
-        transition: var(--transition);
-      }
-
-      .social-links a:hover {
-        background-color: var(--red);
-        transform: translateY(-5px);
-      }
-
       .copyright {
         color: #777;
         font-size: 0.9rem;
@@ -1039,38 +1077,8 @@
         }
       }
 
-      /* Page Navigation */
-      .page-navigation {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 40px;
-        flex-wrap: wrap;
-      }
-
-      .page-nav-btn {
-        background-color: transparent;
-        border: none;
-        color: var(--white);
-        padding: 12px 20px;
-        margin: 5px 10px;
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: var(--transition);
-        border-bottom: 3px solid transparent;
-        border-radius: 6px;
-      }
-
-      .page-nav-btn:hover,
-      .page-nav-btn.active {
-        color: var(--red);
-        border-bottom-color: var(--red);
-        background-color: rgba(254, 0, 0, 0.05);
-      }
-
       /* ========== MOBILE OPTIMIZATIONS ========== */
 
-      /* Tablet Styles */
       @media (max-width: 992px) {
         .hero h1 {
           font-size: 2.8rem;
@@ -1095,11 +1103,6 @@
           font-size: 2.2rem;
         }
 
-        .video-controls {
-          bottom: 25px;
-          right: 25px;
-        }
-
         .modal-content {
           max-width: 90%;
           margin: 20px;
@@ -1111,9 +1114,7 @@
         }
       }
 
-      /* Mobile Styles */
       @media (max-width: 768px) {
-        /* Enhanced Mobile Navigation */
         .mobile-menu-btn {
           display: block;
         }
@@ -1169,55 +1170,6 @@
           font-size: 1.1rem;
         }
 
-        /* Modal Mobile Styles */
-        .modal {
-          padding: 10px;
-          align-items: flex-start;
-          padding-top: 60px;
-          backdrop-filter: blur(20px);
-        }
-
-        .modal-content {
-          max-height: calc(100vh - 80px);
-          max-width: 95%;
-          margin: 0 auto;
-          border-radius: 16px;
-        }
-
-        .modal-header {
-          padding: 25px 25px 15px;
-        }
-
-        .modal-header h3 {
-          font-size: 1.8rem;
-        }
-
-        .modal-body {
-          padding: 25px;
-        }
-
-        .close-modal {
-          top: 20px;
-          right: 20px;
-          width: 40px;
-          height: 40px;
-        }
-
-        /* Mobile Responsive WhatsApp */
-        .whatsapp-section {
-          padding: 25px 20px;
-        }
-
-        .whatsapp-btn {
-          padding: 16px 25px;
-          font-size: 1rem;
-        }
-
-        .contact-content {
-          gap: 30px;
-        }
-
-        /* Enhanced Hero Section for Mobile */
         .hero {
           height: 90vh;
           min-height: 500px;
@@ -1235,15 +1187,6 @@
 
         .hero h1 {
           font-size: 2.2rem;
-          margin-bottom: 1.2rem;
-          line-height: 1.2;
-        }
-
-        .hero p {
-          font-size: 1.1rem;
-          margin-bottom: 2.2rem;
-          line-height: 1.5;
-          padding: 0 10px;
         }
 
         .hero-btns {
@@ -1261,96 +1204,20 @@
           font-size: 1.1rem;
         }
 
-        .scroll-indicator {
-          bottom: 30px;
-        }
-
-        .scroll-indicator span {
-          font-size: 0.8rem;
-        }
-
-        .video-controls {
-          bottom: 20px;
-          right: 20px;
-        }
-
-        .video-control-btn {
-          width: 45px;
-          height: 45px;
-          font-size: 1.1rem;
-        }
-
-        .section-title h2 {
-          font-size: 1.9rem;
-        }
-
-        .services-grid {
-          grid-template-columns: 1fr;
-          gap: 25px;
-        }
-
-        .service-card {
-          padding: 35px 25px;
-        }
-
-        .form-row {
-          grid-template-columns: 1fr;
-          gap: 15px;
-        }
-
-        .booking-form {
-          padding: 25px 20px;
-        }
-
-        .clients-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 25px;
-        }
-
-        .client-logo {
-          width: 100%;
-          height: 70px;
-        }
-
         .gallery-grid {
           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
           gap: 15px;
         }
 
-        .gallery-item {
+        .gallery-media {
           height: 220px;
-        }
-
-        .page-navigation {
-          margin-bottom: 30px;
-        }
-
-        .page-nav-btn {
-          padding: 10px 16px;
-          margin: 4px 8px;
-          font-size: 0.95rem;
         }
 
         section {
           padding: 60px 0;
         }
-
-        .social-links a {
-          width: 45px;
-          height: 45px;
-        }
-
-        .form-control {
-          padding: 14px 16px;
-        }
-
-        .submit-btn {
-          padding: 18px;
-          font-size: 1rem;
-        }
       }
 
-      /* Small Mobile Styles */
       @media (max-width: 576px) {
         .hero {
           height: 85vh;
@@ -1360,53 +1227,6 @@
 
         .hero h1 {
           font-size: 1.9rem;
-          margin-bottom: 1rem;
-        }
-
-        .hero p {
-          font-size: 1rem;
-          margin-bottom: 2rem;
-          padding: 0;
-        }
-
-        .hero-btns {
-          max-width: 100%;
-        }
-
-        .hero-btns .btn {
-          padding: 15px 20px;
-          font-size: 1rem;
-        }
-
-        .scroll-indicator {
-          bottom: 25px;
-        }
-
-        .scroll-indicator span {
-          display: none;
-        }
-
-        .logo {
-          font-size: 1.6rem;
-        }
-
-        .section-title h2 {
-          font-size: 1.7rem;
-        }
-
-        .about-image {
-          height: 300px;
-        }
-
-        .clients-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        .client-logo {
-          height: 60px;
-          max-width: 250px;
-          margin: 0 auto;
         }
 
         .gallery-grid {
@@ -1414,135 +1234,8 @@
           gap: 12px;
         }
 
-        .gallery-item {
+        .gallery-media {
           height: 200px;
-        }
-
-        .contact-content {
-          gap: 30px;
-        }
-
-        .video-controls {
-          bottom: 15px;
-          right: 15px;
-        }
-
-        .video-control-btn {
-          width: 40px;
-          height: 40px;
-          font-size: 1rem;
-        }
-
-        .modal-header h3 {
-          font-size: 1.5rem;
-        }
-
-        /* Small Mobile WhatsApp */
-        .whatsapp-btn {
-          padding: 15px 20px;
-          flex-direction: column;
-          gap: 10px;
-        }
-
-        .whatsapp-btn i {
-          margin-right: 0;
-          font-size: 1.8rem;
-        }
-
-        .whatsapp-btn span {
-          font-size: 1rem;
-        }
-
-        .modal-body {
-          padding: 20px;
-        }
-
-        .modal-header {
-          padding: 20px 20px 15px;
-        }
-      }
-
-      /* Very Small Screens */
-      @media (max-width: 380px) {
-        .hero h1 {
-          font-size: 1.7rem;
-        }
-
-        .hero p {
-          font-size: 0.95rem;
-        }
-
-        .service-card {
-          padding: 30px 20px;
-        }
-
-        .service-icon {
-          font-size: 2.5rem;
-        }
-
-        .service-card h3 {
-          font-size: 1.3rem;
-        }
-
-        .page-nav-btn {
-          padding: 8px 12px;
-          margin: 3px 6px;
-          font-size: 0.9rem;
-        }
-
-        .modal-body {
-          padding: 15px;
-        }
-
-        .modal-header {
-          padding: 15px 15px 10px;
-        }
-
-        .close-modal {
-          width: 35px;
-          height: 35px;
-        }
-      }
-
-      /* Landscape Mode Optimization */
-      @media (max-height: 600px) and (orientation: landscape) {
-        .hero {
-          height: auto;
-          min-height: 100vh;
-          padding: 100px 0 60px;
-        }
-
-        .hero-content {
-          padding-top: 40px;
-          padding-bottom: 40px;
-        }
-
-        .hero h1 {
-          font-size: 2rem;
-        }
-
-        .hero p {
-          font-size: 1rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .hero-btns {
-          flex-direction: row;
-          justify-content: center;
-        }
-
-        .hero-btns .btn {
-          width: auto;
-          padding: 12px 20px;
-        }
-
-        .scroll-indicator {
-          display: none;
-        }
-
-        .modal {
-          padding-top: 20px;
-          padding-bottom: 20px;
         }
       }
     </style>
@@ -1723,7 +1416,6 @@
             </button>
           </form>
 
-          <!-- Success Message (Hidden by default) -->
           <div class="modal-success" id="successMessage" style="display: none">
             <div class="modal-success-icon">
               <i class="fas fa-check-circle"></i>
@@ -1742,24 +1434,12 @@
       </div>
     </div>
 
-    <!-- Hero Section with Video -->
+    <!-- Hero Section with Video (UNCHANGED) -->
     <section class="hero" id="home">
       <div class="hero-bg">
         <div class="hero-overlay"></div>
 
-        <!-- VIDEO SECTION -->
         <div class="hero-video-container">
-          <!-- 
-                    HOW TO ADD YOUR LOCAL VIDEO:
-                    
-                    1. Save your video file in the same folder as this HTML file
-                    2.  "your-video.mp4" with your actual video filename
-                -->
-
-          <!-- CURRENT PLACEHOLDER -  THIS WITH YOUR VIDEO -->
-
-          UNCOMMENT AND USE THIS CODE FOR YOUR LOCAL VIDEO:
-
           <video id="heroVideo" autoplay muted loop playsinline>
             <source src="Sync House.mp4" type="video/mp4" />
             Your browser does not support the video tag.
@@ -1770,8 +1450,6 @@
       <div class="container">
         <div class="hero-content">
           <h1>Vibrant Visual Solutions for Unforgettable Events</h1>
-          <!-- <p>Sync House Solutions is a premier media company specializing in LED screen
-                     solutions for corporate bodies, music artists, religious groups, and individuals across Ghana.</p> -->
           <div class="hero-btns">
             <a href="#services" class="btn">Our Services</a>
             <a href="#contact" class="btn btn-outline">Contact Us</a>
@@ -1779,14 +1457,13 @@
         </div>
       </div>
 
-      <!-- Scroll Indicator for Mobile -->
       <div class="scroll-indicator" id="scrollIndicator">
         <span>Scroll</span>
         <i class="fas fa-chevron-down"></i>
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section (UPDATED TEXT ONLY) -->
     <section class="about" id="about">
       <div class="container">
         <div class="section-title">
@@ -1803,20 +1480,24 @@
               installation, and event support for clients across the regions of
               Ghana.
             </p>
+
             <p>
-              Established in 2023, Sync House Solutions has grown into a trusted
-              provider of LED screen solutions within the media and events
-              industry. Founded by Gabriel Obeng Kwakye, the company—along with
-              its dedicated team—has collaborated with leading corporate
-              organisations and renowned music artists, delivering reliable and
-              innovative LED display solutions for various events.
+              Established in 2019 and duly incorporated in 2023 with the Office
+              of the Registrar of Companies, Ghana. Sync House Solutions has
+              grown into a trusted provider of LED screen solutions within the
+              media and events industry. Founded by Gabriel Obeng Kwakye, the
+              company—along with its dedicated team—has collaborated with
+              leading corporate organisations and renowned music artists,
+              delivering reliable and innovative LED display solutions for
+              various events.
             </p>
+
             <p>
               Through our commitment to excellence and technology-driven
               service, Sync House Solutions continues to stand out as a
               distinguished name in Ghana's media landscape.
             </p>
-        
+
             <a href="#contact" class="btn">Get In Touch</a>
           </div>
 
@@ -1851,14 +1532,13 @@
                   opacity: 0.95;
                 "
               />
-
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section (UNCHANGED) -->
     <section class="services" id="services">
       <div class="container">
         <div class="section-title">
@@ -1877,21 +1557,22 @@
               celebrations, and religious gatherings.
             </p>
           </div>
-<div class="service-card">
-  <div class="service-icon">
-    <i class="fas fa-comments"></i>
-  </div>
-  <h3>Consultations, Sales &amp; Repairs</h3>
-  <p>
-    Our team offers expert consulting services to organisations looking to
-    procure, design, or install LED screen systems tailored to their needs.
-  </p>
-  <p>
-    We also supply durable LED screens and provide reliable repair services
-    to keep your equipment functioning at its best.
-  </p>
-</div>
 
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3>Consultations, Sales &amp; Repairs</h3>
+            <p>
+              Our team offers expert consulting services to organisations
+              looking to procure, design, or install LED screen systems tailored
+              to their needs.
+            </p>
+            <p>
+              We also supply durable LED screens and provide reliable repair
+              services to keep your equipment functioning at its best.
+            </p>
+          </div>
 
           <div class="service-card">
             <div class="service-icon">
@@ -1904,492 +1585,243 @@
               optimal performance.
             </p>
           </div>
-
-          
         </div>
       </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery Section (NOW: descriptions under EVERY image + pop-out) -->
     <section class="gallery-section" id="gallery">
       <div class="container">
         <div class="section-title">
           <h2>Our Gallery</h2>
         </div>
 
-        <!-- EVENTS GALLERY -->
+        <p
+          style="
+            text-align: center;
+            color: #bbb;
+            max-width: 850px;
+            margin: 0 auto 35px;
+            line-height: 1.7;
+          "
+        >
+          Explore some of our LED screen setups and event support across Ghana.
+          Tap any image to view it in full size.
+        </p>
+
         <div class="gallery-container active" id="events-gallery">
           <div class="gallery-grid">
+            <!-- IMG 1 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    var(--dark-gray) 30%,
-                    #333 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <img
-                  src="IMG_1.JPG"
-                  alt="Gallery Image 1"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_1.JPG" alt="Corporate Event Setup" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Corporate Setup</strong> -->
+                DYK night of Comedy and Music
               </div>
             </div>
 
+            <!-- IMG 2 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #333 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <img
-                  src="IMG_2.JPG"
-                  alt="Gallery Image 2"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_2.JPG" alt="Stage Visuals" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Stage Visuals</strong> -->
+                Rocky Dawuni Music Fest 3. Private Event
               </div>
             </div>
 
+            <!-- IMG 3 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(45deg, var(--red) 30%, #333 70%);
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <img
-                  src="IMG_3.JPG"
-                  alt="Gallery Image 3"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_3.JPG" alt="Concert Backdrop" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Concert Backdrop</strong> -->
+                Promise land event
               </div>
             </div>
 
+            <!-- IMG 4 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(45deg, #333 30%, var(--red) 70%);
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_4.JPG"
-                  alt="Gallery Image 4"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_4.JPG" alt="Event Screen Display" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Event Display</strong> -->
+                ⁠African Union Conference
               </div>
             </div>
 
+            <!-- IMG 5 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    var(--dark-gray) 30%,
-                    #555 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_5.JPG"
-                  alt="Gallery Image 5"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_5.JPG" alt="Indoor LED Setup" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Indoor Setup</strong> -->
+                African Union Conference
               </div>
             </div>
 
+            <!-- IMG 6 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #555 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_6.JPG"
-                  alt="Gallery Image 6"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_6.JPG" alt="Conference LED Screen" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Conference Screen</strong> -->
+                ⁠Diaspora Africa
               </div>
             </div>
 
+            <!-- IMG 7 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #555 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_7.JPG"
-                  alt="Gallery Image 6"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_7.JPG" alt="Outdoor Screen Support" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Outdoor Support</strong> -->
+                African Social Movement
               </div>
             </div>
 
+            <!-- IMG 8 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #555 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_8.JPG"
-                  alt="Gallery Image 6"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_8.JPG" alt="Brand Activation Display" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Brand Activation</strong> -->
+                ⁠Eco Cool Cement Launch
               </div>
             </div>
 
+            <!-- IMG 9 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #555 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_9.JPG"
-                  alt="Gallery Image 6"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_9.JPG" alt="LED Screen Rental" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>LED Screen Rental</strong> -->
+                African Social Movemen
               </div>
             </div>
 
+            <!-- IMG 10 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #555 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_10.JPG"
-                  alt="Gallery Image 6"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_10.JPG" alt="Live Program Display" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Live Program</strong> -->
+                4syte TV artiste night
               </div>
             </div>
 
+            <!-- IMG 11 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #555 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_11.JPG"
-                  alt="Gallery Image 6"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_11.JPG" alt="Event Visual Production" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
-              </div>
-            </div>
-            <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #555 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_12.JPG"
-                  alt="Gallery Image 6"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
-              </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Visual Production</strong> -->
+                Central Region Event Festival
               </div>
             </div>
 
+            <!-- IMG 12 -->
             <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #555 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_13.JPG"
-                  alt="Gallery Image 6"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+              <div class="gallery-media">
+                <img src="IMG_12.JPG" alt="Religious Event Setup" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <!-- <strong>Religious Event</strong> -->
+                Rhythms on the runway
               </div>
             </div>
 
-            <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #555 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_16.jpg"
-                  alt="Gallery Image 6"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+            <!-- IMG 13 -->
+            <!-- <div class="gallery-item">
+              <div class="gallery-media">
+                <img src="IMG_13.JPG" alt="Stage LED Wall" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <strong>Stage LED Wall</strong>
+                Seamless LED wall display for stage backdrops and content.
               </div>
-            </div>
+            </div> -->
 
-            <div class="gallery-item">
-              <div
-                style="
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(
-                    45deg,
-                    #555 30%,
-                    var(--dark-gray) 70%
-                  );
-                  position: relative;
-                  overflow: hidden;
-                "
-              >
-                <!-- 🔹  image -->
-                <img
-                  src="IMG_17.JPG"
-                  alt="Gallery Image 6"
-                  style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    inset: 0;
-                  "
-                />
+            <!-- IMG 16 -->
+            <!-- <div class="gallery-item">
+              <div class="gallery-media">
+                <img src="IMG_16.jpg" alt="High Resolution Display" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
+              <div class="gallery-caption">
+                <strong>High Resolution</strong>
+                Sharp, vibrant display for premium content and close-range
+                viewing.
               </div>
-            </div>
+            </div> -->
 
-         
-            </div>
+            <!-- IMG 17 -->
+            <!-- <div class="gallery-item">
+              <div class="gallery-media">
+                <img src="IMG_17.JPG" alt="Event Screen Installation" />
+                <div class="gallery-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </div>
+              <div class="gallery-caption">
+                <strong>Installation</strong>
+                Professional setup to ensure safety, stability, and clean
+                finish.
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -2492,13 +1924,55 @@
       </div>
     </footer>
 
+    <!-- Gallery Lightbox Modal (Pop-out) -->
+    <div class="lightbox" id="galleryLightbox" aria-hidden="true">
+      <div class="lightbox-card" role="dialog" aria-modal="true">
+        <div class="lightbox-topbar">
+          <div class="lightbox-meta">
+            <div class="lightbox-title" id="lightboxTitle">Gallery Preview</div>
+            <div class="lightbox-desc" id="lightboxDesc">
+              Tap arrows to navigate. Press ESC to close.
+            </div>
+          </div>
+
+          <div class="lightbox-actions">
+            <button class="lightbox-btn" id="lightboxPrev" title="Previous">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-btn" id="lightboxNext" title="Next">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="lightbox-btn" id="lightboxClose" title="Close">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="lightbox-body">
+          <img
+            src=""
+            alt="Gallery preview"
+            class="lightbox-img"
+            id="lightboxImg"
+          />
+          <div class="lightbox-nav" aria-hidden="true">
+            <button class="nav-btn" id="lightboxPrev2" title="Previous">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-btn" id="lightboxNext2" title="Next">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
       // Mobile Navigation Toggle - FIXED VERSION
       const mobileMenuBtn = document.getElementById("mobileMenuBtn");
       const mainNav = document.getElementById("mainNav");
       const navLinks = document.querySelectorAll("#mainNav a");
 
-      // Function to toggle mobile menu
       function toggleMobileMenu() {
         const isActive = mainNav.classList.contains("active");
 
@@ -2513,13 +1987,11 @@
         }
       }
 
-      // Event listener for mobile menu button
       mobileMenuBtn.addEventListener("click", function (e) {
-        e.stopPropagation(); // Prevent event bubbling
+        e.stopPropagation();
         toggleMobileMenu();
       });
 
-      // Close mobile menu when clicking a link
       navLinks.forEach((link) => {
         link.addEventListener("click", () => {
           if (mainNav.classList.contains("active")) {
@@ -2530,7 +2002,6 @@
         });
       });
 
-      // Close menu when clicking outside
       document.addEventListener("click", (e) => {
         if (
           mainNav.classList.contains("active") &&
@@ -2543,7 +2014,6 @@
         }
       });
 
-      // Close menu with Escape key
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && mainNav.classList.contains("active")) {
           mainNav.classList.remove("active");
@@ -2563,15 +2033,12 @@
       const closeSuccessBtn = document.getElementById("closeSuccessBtn");
       const formGrid = bookingFormModal.querySelector(".form-grid");
 
-      // Function to open modal with animation
       function openBookingModal() {
         bookingModal.classList.add("active");
         document.body.style.overflow = "hidden";
-        // Reset form and show form, hide success message
         bookingFormModal.style.display = "block";
         successMessage.style.display = "none";
 
-        // Add entrance animation to form elements
         const formElements = formGrid.querySelectorAll(".form-group");
         formElements.forEach((el, index) => {
           el.style.opacity = "0";
@@ -2584,13 +2051,11 @@
         });
       }
 
-      // Function to close modal
       function closeBookingModal() {
         bookingModal.classList.remove("active");
         document.body.style.overflow = "";
       }
 
-      // Event listeners for opening modal
       openBookingModalBtn.addEventListener("click", (e) => {
         e.preventDefault();
         openBookingModal();
@@ -2610,34 +2075,29 @@
         });
       }
 
-      // Event listener for closing modal
       closeBookingModalBtn.addEventListener("click", closeBookingModal);
       closeSuccessBtn.addEventListener("click", closeBookingModal);
 
-      // Close modal when clicking outside content
       bookingModal.addEventListener("click", (e) => {
         if (e.target === bookingModal) {
           closeBookingModal();
         }
       });
 
-      // Close modal with Escape key
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && bookingModal.classList.contains("active")) {
           closeBookingModal();
         }
       });
 
-      // Show/hide other event type field in modal
       const eventTypeModalSelect = document.getElementById("eventTypeModal");
       const otherEventTypeModalContainer = document.getElementById(
-        "otherEventTypeModalContainer"
+        "otherEventTypeModalContainer",
       );
 
       eventTypeModalSelect.addEventListener("change", () => {
         if (eventTypeModalSelect.value === "Other") {
           otherEventTypeModalContainer.style.display = "block";
-          // Animate in
           setTimeout(() => {
             otherEventTypeModalContainer.style.opacity = "0";
             otherEventTypeModalContainer.style.transform = "translateY(-10px)";
@@ -2653,11 +2113,9 @@
         }
       });
 
-      // Modal Form submission - send via email (mailto:)
       bookingFormModal.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // 1. Get ALL form values
         const contactPerson =
           document.getElementById("contactPersonModal").value;
         const companyName =
@@ -2673,7 +2131,6 @@
           document.getElementById("otherEventTypeModal").value || "";
         const message = document.getElementById("messageModal").value || "";
 
-        // 2. Basic validation for required fields
         if (
           !contactPerson ||
           !email ||
@@ -2688,15 +2145,13 @@
           return;
         }
 
-        // 3. Handle "Other" event type nicely
         const finalEventType =
           eventType === "Other" && otherEventType
             ? `Other - ${otherEventType}`
             : eventType;
 
-        // 4. Build the email subject and body
         const subject = encodeURIComponent(
-          `New LED Screen Booking Request - ${contactPerson}`
+          `New LED Screen Booking Request - ${contactPerson}`,
         );
 
         const emailBody = `
@@ -2718,21 +2173,15 @@ ${message || "None provided"}
         `;
 
         const encodedBody = encodeURIComponent(emailBody);
-
-        // 5. Your company inbox
         const toEmail = "Synchouseproduction@gmail.com";
-
-        // 6. Open user's email client with pre-filled email
         const mailtoLink = `mailto:${toEmail}?subject=${subject}&body=${encodedBody}`;
         window.location.href = mailtoLink;
 
-        // 7. Reset form and close modal for clean UX
         bookingFormModal.reset();
         bookingModal.classList.remove("active");
         document.body.style.overflow = "";
       });
 
-      // Header scroll effect
       window.addEventListener("scroll", () => {
         const header = document.getElementById("header");
         if (window.scrollY > 50) {
@@ -2741,7 +2190,6 @@ ${message || "None provided"}
           header.classList.remove("scrolled");
         }
 
-        // Hide scroll indicator after scrolling
         const scrollIndicator = document.getElementById("scrollIndicator");
         if (scrollIndicator && window.scrollY > 100) {
           scrollIndicator.style.opacity = "0";
@@ -2752,11 +2200,9 @@ ${message || "None provided"}
         }
       });
 
-      // WhatsApp button functionality
       const whatsappBtn = document.getElementById("whatsappBtn");
-      const whatsappNumber = "233555524747"; // Ghana country code + number without leading 0
+      const whatsappNumber = "233555524747";
 
-      // Optional: Different template messages based on user action
       function generateWhatsAppMessage(type = "general") {
         const templates = {
           general:
@@ -2770,25 +2216,15 @@ ${message || "None provided"}
         return encodeURIComponent(templates[type] || templates.general);
       }
 
-      // Update WhatsApp link with dynamic message if needed
       function updateWhatsAppLink(messageType = "general") {
         const message = generateWhatsAppMessage(messageType);
         whatsappBtn.href = `https://wa.me/${whatsappNumber}?text=${message}`;
       }
 
-      // Initialize WhatsApp link
       document.addEventListener("DOMContentLoaded", function () {
-        // Default message
         updateWhatsAppLink("general");
       });
 
-      // Optional: Track WhatsApp clicks
-      whatsappBtn.addEventListener("click", function () {
-        // You can add analytics here
-        console.log("WhatsApp button clicked");
-      });
-
-      // Smooth scrolling for anchor links
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           const targetId = this.getAttribute("href");
@@ -2796,7 +2232,6 @@ ${message || "None provided"}
 
           const targetElement = document.querySelector(targetId);
           if (targetElement) {
-            // Close mobile menu if open
             if (mainNav.classList.contains("active")) {
               mainNav.classList.remove("active");
               mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
@@ -2812,7 +2247,6 @@ ${message || "None provided"}
         });
       });
 
-      // Scroll indicator click
       document
         .getElementById("scrollIndicator")
         ?.addEventListener("click", () => {
@@ -2822,107 +2256,98 @@ ${message || "None provided"}
           });
         });
 
-      // Set min date for event date to today in modal
       const today = new Date().toISOString().split("T")[0];
       document.getElementById("eventDateModal").setAttribute("min", today);
-
-      // Video Controls
-      const playPauseBtn = document.getElementById("playPauseBtn");
-      const muteBtn = document.getElementById("muteBtn");
-      const videoFallback = document.getElementById("videoFallback");
-      let videoPlaying = true;
-      let videoMuted = true;
-
-      // Function to initialize video controls when video is added
-      function initVideoControls() {
-        const heroVideo = document.getElementById("heroVideo");
-
-        if (heroVideo) {
-          // Play/Pause control
-          if (playPauseBtn) {
-            playPauseBtn.addEventListener("click", () => {
-              if (heroVideo.paused) {
-                heroVideo.play();
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                videoPlaying = true;
-              } else {
-                heroVideo.pause();
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                videoPlaying = false;
-              }
-            });
-          }
-
-          // Mute/Unmute control
-          if (muteBtn) {
-            muteBtn.addEventListener("click", () => {
-              if (heroVideo.muted) {
-                heroVideo.muted = false;
-                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                videoMuted = false;
-              } else {
-                heroVideo.muted = true;
-                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                videoMuted = true;
-              }
-            });
-          }
-
-          // Hide the fallback when video is loaded
-          if (videoFallback) {
-            videoFallback.style.display = "none";
-          }
-        }
-      }
-
-      // Initialize video controls when page loads
-      window.addEventListener("load", initVideoControls);
-
-      // Initialize animations on scroll
-      const animateOnScroll = () => {
-        const elements = document.querySelectorAll(
-          ".service-card, .about-image, .client-logo"
-        );
-
-        elements.forEach((element) => {
-          const elementTop = element.getBoundingClientRect().top;
-          const windowHeight = window.innerHeight;
-
-          if (elementTop < windowHeight - 100) {
-            element.style.opacity = "1";
-            element.style.transform = "translateY(0)";
-          }
-        });
-      };
-
-      // Set initial state for animated elements
-      document
-        .querySelectorAll(".service-card, .about-image, .client-logo")
-        .forEach((element) => {
-          element.style.opacity = "0";
-          element.style.transform = "translateY(30px)";
-          element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-        });
-
-      // Trigger animations on load and scroll
-      window.addEventListener("load", animateOnScroll);
-      window.addEventListener("scroll", animateOnScroll);
-
-      // Fix for mobile viewport height
-      function setVH() {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty("--vh", `${vh}px`);
-      }
-
-      setVH();
-      window.addEventListener("resize", setVH);
-      window.addEventListener("orientationchange", setVH);
 
       document.addEventListener("DOMContentLoaded", function () {
         const yearSpan = document.getElementById("year");
         if (yearSpan) {
           yearSpan.textContent = new Date().getFullYear();
         }
+      });
+
+      // =======================
+      // Gallery Pop-out (Lightbox)
+      // =======================
+      const lightbox = document.getElementById("galleryLightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const lightboxTitle = document.getElementById("lightboxTitle");
+      const lightboxDesc = document.getElementById("lightboxDesc");
+
+      const lightboxClose = document.getElementById("lightboxClose");
+      const lightboxPrev = document.getElementById("lightboxPrev");
+      const lightboxNext = document.getElementById("lightboxNext");
+      const lightboxPrev2 = document.getElementById("lightboxPrev2");
+      const lightboxNext2 = document.getElementById("lightboxNext2");
+
+      const galleryItems = Array.from(
+        document.querySelectorAll(".gallery-item"),
+      );
+      let currentIndex = 0;
+
+      function openLightbox(index) {
+        currentIndex = index;
+
+        const img = galleryItems[currentIndex].querySelector("img");
+        const caption =
+          galleryItems[currentIndex].querySelector(".gallery-caption");
+
+        if (!img) return;
+
+        lightboxImg.src = img.getAttribute("src");
+        lightboxTitle.textContent =
+          img.getAttribute("alt") || "Gallery Preview";
+        lightboxDesc.textContent = caption
+          ? caption.textContent.trim()
+          : "Tap arrows to navigate. Press ESC to close.";
+
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        setTimeout(() => (lightboxImg.src = ""), 150);
+      }
+
+      function showNext() {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        openLightbox(currentIndex);
+      }
+
+      function showPrev() {
+        currentIndex =
+          (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        openLightbox(currentIndex);
+      }
+
+      galleryItems.forEach((item, index) => {
+        item.addEventListener("click", () => openLightbox(index));
+        item.setAttribute("tabindex", "0");
+        item.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") openLightbox(index);
+        });
+      });
+
+      lightboxClose.addEventListener("click", closeLightbox);
+      lightboxNext.addEventListener("click", showNext);
+      lightboxPrev.addEventListener("click", showPrev);
+      lightboxNext2.addEventListener("click", showNext);
+      lightboxPrev2.addEventListener("click", showPrev);
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("active")) return;
+
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") showNext();
+        if (e.key === "ArrowLeft") showPrev();
       });
     </script>
   </body>
